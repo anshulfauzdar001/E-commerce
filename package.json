@@ -10,7 +10,7 @@
     "postinstall": "npm-run-all --parallel install:*",
     "install:client": "cd client && npm install",
     "install:server": "cd server && npm install",
-    "build": "npm run install:client && npm run install:server && cd client && npm run build && cd .. && mkdir -p public && cp -r client/dist/* public/",
+    "build": "npm run install:client && npm run install:server && cd client && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
