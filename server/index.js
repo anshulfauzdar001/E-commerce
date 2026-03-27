@@ -35,3 +35,5 @@ const server = app.listen(port, () => {
 });
 
 socket(server);
+
+module.exports = app;
