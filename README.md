@@ -41,7 +41,6 @@ Before running the project, make sure you have the following installed on your m
 
 Follow these steps to set up the project locally:
 
-
 ### 2. Install dependencies
 
 From the root directory, you can install both client and server dependencies using:
