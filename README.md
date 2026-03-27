@@ -1,118 +1,105 @@
-# MERN Ecommerce
+# MERN E-Commerce
 
-## Description
+A full-stack e-commerce web application built using the MERN stack (MongoDB, Express.js, React, Node.js). This project provides a comprehensive foundation for building scalable online stores.
 
-An ecommerce store built with MERN stack, and utilizes third party API's. This ecommerce store enable three main different flows or implementations:
+## Features
 
-1. Buyers browse the store categories, products and brands
-2. Sellers or Merchants manage their own brand component
-3. Admins manage and control the entire store components 
+- **Authentication & Authorization**: Secure user registration and login using JWT (JSON Web Tokens), Passport.js with Local, Google OAuth, and Facebook login strategies.
+- **Product Management**: Ability to manage products, categories, and inventory.
+- **Shopping Cart**: Fully functional shopping cart system with Redux state management.
+- **Payment Integration**: Support for payment gateways (e.g., Stripe, PayPal integration ready).
+- **Admin Dashboard**: Role-based access control for managing users, products, and orders.
+- **Real-time Notifications**: Socket.io integration for instant updates and notifications.
+- **Mailing**: Integration with Mailgun and Mailchimp for email services and newsletters.
 
-### Features:
+## Technologies Used
 
-  * Node provides the backend environment for this application
-  * Express middleware is used to handle requests, routes
-  * Mongoose schemas to model the application data
-  * React for displaying UI components
-  * Redux to manage application's state
-  * Redux Thunk middleware to handle asynchronous redux actions
+*   **Frontend:**
+    *   React.js
+    *   Redux & Redux-Thunk (State Management)
+    *   React Router (Routing)
+    *   Bootstrap & Reactstrap (UI Framework)
+    *   SASS (Styling)
+    *   Webpack (Module Bundler)
+*   **Backend:**
+    *   Node.js
+    *   Express.js
+    *   MongoDB (NoSQL Database) & Mongoose (ODM)
+    *   Passport.js (Authentication)
+    *   Socket.io (WebSockets)
+    *   AWS SDK
 
-## Demo
+## Prerequisites
 
-This application is deployed on Vercel Please check it out :smile: [here](https://mern-store-gold.vercel.app).
+Before running the project, make sure you have the following installed on your machine:
 
-See admin dashboard [demo](https://mernstore-bucket.s3.us-east-2.amazonaws.com/admin.mp4)
+*   [Node.js](https://nodejs.org/) (v14 or later recommended)
+*   [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/)
+*   [MongoDB](https://www.mongodb.com/) (running locally or a cloud instance like MongoDB Atlas)
 
-## Docker Guide
+## Getting Started
 
-To run this project locally you can use docker compose provided in the repository. Here is a guide on how to run this project locally using docker compose.
+Follow these steps to set up the project locally:
 
-Clone the repository
+
+### 2. Install dependencies
+
+From the root directory, you can install both client and server dependencies using:
+
+```bash
+npm run postinstall
 ```
-git clone https://github.com/mohamedsamara/mern-ecommerce.git
-```
-
-Edit the dockercompose.yml file and update the the values for MONGO_URI and JWT_SECRET
-
-Then simply start the docker compose:
-
-```
-docker-compose build
-docker-compose up
-```
-
-## Database Seed
-
-* The seed command will create an admin user in the database
-* The email and password are passed with the command as arguments
-* Like below command, replace brackets with email and password. 
-* For more information, see code [here](server/utils/seed.js)
-
-```
-npm run seed:db [email-***@****.com] [password-******] // This is just an example.
-```
-
-## Install
-
-`npm install` in the project root will install dependencies in both `client` and `server`. [See package.json](package.json)
-
-Some basic Git commands are:
-
-```
-git clone https://github.com/mohamedsamara/mern-ecommerce.git
-cd project
-npm install
+Alternatively, you can manually install them:
+```bash
+npm run install:client
+npm run install:server
 ```
 
-## ENV
+### 3. Environment Variables
 
-Create `.env` file for both client and server. See examples:
+Create a `.env` file in the `server` directory and add the necessary environment variables. Example variables you might need:
 
-[Frontend ENV](client/.env.example)
-
-[Backend ENV](server/.env.example)
-
-
-## Vercel Deployment
-
-Both frontend and backend are deployed on Vercel from the same repository. When deploying on Vercel, make sure to specifiy the root directory as `client` and `server` when importing the repository. See [client vercel.json](client/vercel.json) and [server vercel.json](server/vercel.json).
-
-## Start development
-
+```env
+PORT=3000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+MAILGUN_KEY=your_mailgun_api_key
+MAILGUN_DOMAIN=your_mailgun_domain
+MAILCHIMP_KEY=your_mailchimp_api_key
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+FACEBOOK_CLIENT_ID=your_facebook_client_id
+FACEBOOK_CLIENT_SECRET=your_facebook_client_secret
 ```
+
+Create a `.env` file in the `client` directory (if required by your configuration, typically handled by dotenv-webpack).
+
+### 4. Seed the Database (Optional)
+
+You can generate sample data to test the application:
+
+```bash
+cd server
+npm run seed:db
+```
+
+### 5. Run the Application
+
+To run both the server and the client concurrently in development mode:
+
+```bash
+# from the root directory
 npm run dev
 ```
 
-## Languages & tools
+*   **Client** will run on: `http://localhost:8080` (or as configured in webpack)
+*   **Server** will run on: `http://localhost:3000`
 
-- [Node](https://nodejs.org/en/)
+## Scripts Overview
 
-- [Express](https://expressjs.com/)
-
-- [Mongoose](https://mongoosejs.com/)
-
-- [React](https://reactjs.org/)
-
-- [Webpack](https://webpack.js.org/)
-
-
-### Code Formatter
-
-- Add a `.vscode` directory
-- Create a file `settings.json` inside `.vscode`
-- Install Prettier - Code formatter in VSCode
-- Add the following snippet:  
-
-```json
-
-    {
-      "editor.formatOnSave": true,
-      "prettier.singleQuote": true,
-      "prettier.arrowParens": "avoid",
-      "prettier.jsxSingleQuote": true,
-      "prettier.trailingComma": "none",
-      "javascript.preferences.quoteStyle": "single",
-    }
-
-```
-
+*   `npm run dev`: Starts both frontend and backend concurrently.
+*   `npm run dev:client`: Starts only the frontend development server.
+*   `npm run dev:server`: Starts only the backend server using nodemon.
+*   `npm run install:client`: Installs frontend dependencies.
+*   `npm run install:server`: Installs backend dependencies.
+*   `npm run postinstall`: Installs both client and server dependencies simultaneously.
